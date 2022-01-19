@@ -11,6 +11,12 @@ public class Zoo implements Subject {
     }
 
     public void showAnimalsInfo(){};
+    public void addAnimal(Animal animal){};
+    public void watchAnimals(){};
+    public void feedAnimals(){};
+    public void removeObserver(ZooObserver observer){};
+
+    public void addObserver(ZooObserver observer){};
 
     @Override
     public void subscribeObserver(Observer observer) {
@@ -32,4 +38,4 @@ public class Zoo implements Subject {
         return null;
     }
 }
-}
+
