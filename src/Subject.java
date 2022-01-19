@@ -1,6 +1,6 @@
 interface Subject {
-    void subscribeObserver(Observer observer);
-    void unsubscribeObserver(Observer observer);
-    void notifyObservers();
-    String subjectDetails();
+    void addObserver(Observer observer);
+    void removeObserver(Observer observer);
+    void notifyObservers(String desc);
+   // String subjectDetails();
 }

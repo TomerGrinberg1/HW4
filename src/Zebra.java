@@ -1,8 +1,14 @@
-public class Zebra implements Animal {
-    //int happinessLevel=2;
-    //int hungerLevel=3;
+public class Zebra  implements Animal{
+
+
+
     @Override
-    public void performAction() {  }
+    public void performAction() {
+        System.out.println("The zebra is running...");
+    }
     @Override
-    public void eat() {  }
+    public void eat()
+    {
+        System.out.println("The zebra is eating grass...");
+    }
 }

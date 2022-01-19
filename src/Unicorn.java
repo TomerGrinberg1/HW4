@@ -2,7 +2,11 @@ public class Unicorn implements Animal {
 
 
     @Override
-    public void performAction() {  }
+    public void performAction() {
+        System.out.println("The unicorn is flying...");
+    }
     @Override
-    public void eat() {  }
+    public void eat() {
+        System.out.println("The unicorn is eating rainbow cakes...");
+    }
 }
