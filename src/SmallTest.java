@@ -51,6 +51,7 @@ public class SmallTest {
                     break;
             }
         }
+
         zoo.showAnimalsInfo();
         System.out.println();
 

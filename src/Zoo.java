@@ -95,9 +95,10 @@ public class Zoo implements Subject {
         }
 
 
-        public void addAnimal (Animal animal){
+        public void addAnimalRecursive(Animal animal, Boolean first){
 
-            this.animals.add(animal);
+            if(first)
+                this.animals.add(animal);
             for (Pair p:pairs)
             {
 
@@ -110,9 +111,16 @@ public class Zoo implements Subject {
 
             }
             pairs.add(new Pair(animal.getClass().getSimpleName()));
-            addAnimal(animal);
+            addAnimalRecursive(animal,false);
         }
 
+
+
+
+        public void addAnimal (Animal animal) {
+
+        addAnimalRecursive(animal,true );
+        }
 
         public void watchAnimals () {
         if(this.happinessLevel<5)
