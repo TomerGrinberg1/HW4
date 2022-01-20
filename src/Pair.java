@@ -4,6 +4,7 @@ public class Pair {
     String animalName;
     ArrayList<Animal> animals;
 
+
     public String getAnimalName() {
         return animalName;
     }
@@ -24,6 +25,10 @@ public class Pair {
     {
         this.animalName=name;
         animals=new ArrayList<>();
+    }
+    public Pair(String name, ArrayList<Animal> list){
+        this.animalName = name;
+        animals = new ArrayList<>(list);
     }
     public void addAnimal(Animal animal)
     {
