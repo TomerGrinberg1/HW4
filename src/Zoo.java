@@ -41,9 +41,39 @@ public class Zoo implements Subject {
     public int compare(Animal a1, Animal a2) {
         return a1.getClass().getSimpleName().compareToIgnoreCase(a2.getClass().getSimpleName());
     }
-        public void showAnimalsInfo () {
+
+        public void sortPair(ArrayList<Pair> list)
+        {
+            for(int i = 0; i<list.size(); i++)   //Holds each element
+            {
+                for (int j = i+1; j< list.size(); j++)  //Check for remaining elements
+                {
+                    //compares each elements of the array to all the remaining elements
+                    if(list.get(i).getAnimalName().compareTo(list.get(j).getAnimalName())>0)
+                    {
+                        //swapping array elements
+                        String tempName = list.get(i).getAnimalName();
+                        ArrayList<Animal> tempList=list.get(i).getAnimals();
+                        list.get(i).setAnimalName(list.get(j).getAnimalName());
+                        list.get(i).animals=list.get(j).getAnimals();
+                     //   list.get(i).getAnimalName() = ;
+                        list.get(j).setAnimalName(tempName);
+                        list.get(i).animals=tempList;
+                       // list.get(j).getAnimalName() = temp;
+                    }
+                }
+            }
+
+
+
+        }
+
+
+
+    public void showAnimalsInfo () {
 
             System.out.println("This zoo contains total of " + this.animals.size() + " animals:");
+    sortPair(pairs);
             for (Pair p : pairs)
                 System.out.println("- "+p.animalName + ": " + p.animals.size());
             System.out.println("Happiness level: "+this.happinessLevel);
@@ -52,6 +82,8 @@ public class Zoo implements Subject {
             else
                 System.out.println("The animals are very happy, keep working hard...");
             System.out.println("Hungry level: "+this.hungerLevel);
+            if(this.hungerLevel>3)
+                System.out.println("The animals are hungry, you should feed them…");
            // Comparator<Animal> comparatorField;
             //animals.sort(new NameSorter());
             //Collections.sort((animals, Comparator.comparing(::getClass)));
@@ -61,6 +93,7 @@ public class Zoo implements Subject {
 
 
         public void addAnimal (Animal animal){
+
 
             this.animals.add(animal);
             for (Pair p:pairs)
@@ -74,6 +107,7 @@ public class Zoo implements Subject {
                 }
 
             }
+
             pairs.add(new Pair(animal.getClass().getSimpleName()));
             addAnimal(animal);
 
@@ -82,18 +116,24 @@ public class Zoo implements Subject {
 
 
         public void watchAnimals () {
+        if(this.happinessLevel<5)
         this.happinessLevel++;
+        if(this.hungerLevel<5)
         this.hungerLevel++;
         for(Animal a:animals)
             a.performAction();
+        notifyObservers("The animals are being watched");
+
         }
 
         ;
 
         public void feedAnimals () {
+            if(this.hungerLevel>1)
             this.hungerLevel--;
             for(Animal a:animals)
                 a.eat();
+            notifyObservers("The animals are being fed");
         }
 
         ;
