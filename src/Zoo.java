@@ -7,6 +7,9 @@ public class Zoo implements Subject {
     ArrayList<ZooObserver> zooObservers;
     int happinessLevel = 2;
     int hungerLevel = 3;
+    static final int HAPPINESS_BAR = 3;
+    static final int MAX_HAPPINESS = 5;
+    static final int MIN_HUNGER = 1;
     ArrayList<Pair> pairs = new ArrayList<>();
 
     /**
@@ -56,13 +59,13 @@ public class Zoo implements Subject {
             System.out.println("- " + p.getAnimalName() + ": " + p.getAnimals().size());
 
         System.out.println("Happiness level: " + this.happinessLevel);
-        if (this.happinessLevel < 3)
+        if (this.happinessLevel < HAPPINESS_BAR)
             System.out.println("The animals are not happy, you should watch them...");
         else
             System.out.println("The animals are very happy, keep working hard...");
 
         System.out.println("Hunger level: " + this.hungerLevel);
-        if (this.hungerLevel > 3)
+        if (this.hungerLevel > HAPPINESS_BAR)
             System.out.println("The animals are hungry, you should feed them...");
     }
 
@@ -98,9 +101,9 @@ public class Zoo implements Subject {
      *
      */
     public void watchAnimals() {
-        if (this.happinessLevel < 5)
+        if (this.happinessLevel < MAX_HAPPINESS)
             this.happinessLevel++;
-        if (this.hungerLevel < 5)
+        if (this.hungerLevel < MAX_HAPPINESS)
             this.hungerLevel++;
         for (Animal a : animals)
             a.performAction();
@@ -112,7 +115,7 @@ public class Zoo implements Subject {
      *
      */
     public void feedAnimals() {
-        if (this.hungerLevel > 1)
+        if (this.hungerLevel > MIN_HUNGER)
             this.hungerLevel--;
         for (Animal a : animals)
             a.eat();
@@ -124,7 +127,7 @@ public class Zoo implements Subject {
      * @param observer
      */
     public void removeObserver(Observer observer) {
-        this.zooObservers.remove(observer);
+        this.zooObservers.remove((ZooObserver) observer);
     }
 
     /**
