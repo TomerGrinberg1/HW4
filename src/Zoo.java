@@ -3,14 +3,14 @@ import java.util.ArrayList;
 
 public class Zoo implements Subject {
     private static Zoo instance = null;
-    ArrayList<Animal> animals;
-    ArrayList<ZooObserver> zooObservers;
     int happinessLevel = 2;
     int hungerLevel = 3;
     static final int HAPPINESS_BAR = 3;
     static final int MAX_HAPPINESS = 5;
     static final int MIN_HUNGER = 1;
     ArrayList<Pair> pairs = new ArrayList<>();
+    ArrayList<Animal> animals;
+    ArrayList<ZooObserver> zooObservers;
 
     /**
      *
