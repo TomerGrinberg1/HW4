@@ -16,7 +16,7 @@ public class Zoo implements Subject {
      *class constructor
      * set as private as part of the Singelton design-pattern
      */
-    private Zoo() {
+    protected Zoo() {
         animals = new ArrayList<>();
         zooObservers = new ArrayList<>();
     }
@@ -25,7 +25,7 @@ public class Zoo implements Subject {
      * creates a zoo instance if one is not already exist
      * @return zoo instance, null is the Singelton is already has been created
      */
-    public static Zoo getInstance() {
+    protected static Zoo getInstance() {
         if (instance == null) {
             System.out.println("Creating zoo...");
             instance = new Zoo();
@@ -39,7 +39,7 @@ public class Zoo implements Subject {
      * sorts the animals by an alphabetic order
      * @param list pairs of animal' name and a list of all its' instances
      */
-    public void sortPair(ArrayList<Pair> list) {
+    protected void sortPair(ArrayList<Pair> list) {
         for (int i = 0; i < list.size(); i++)
             for (int j = i + 1; j < list.size(); j++)
                 if (list.get(i).getAnimalName().compareTo(
@@ -55,7 +55,7 @@ public class Zoo implements Subject {
     /**
      * print a quick preview on the animals' overall quantity, hunger and happiness level
      */
-    public void showAnimalsInfo() {
+    protected void showAnimalsInfo() {
         System.out.println("The zoo contains total of " +
                 this.animals.size() + " animals:");
         sortPair(pairs);
@@ -84,7 +84,7 @@ public class Zoo implements Subject {
      * @param animal Animal instance
      * @param first decides if new pair is need to be created
      */
-    public void addAnimalRecursive(Animal animal, Boolean first) {
+    protected void addAnimalRecursive(Animal animal, Boolean first) {
 
         if (first)
             this.animals.add(animal);
@@ -101,9 +101,9 @@ public class Zoo implements Subject {
 
     /**
      *  adds the Animal instance to the pairs list, coat method
-     * @param animal
+     * @param animal Animal instance
      */
-    public void addAnimal(Animal animal) {
+    protected void addAnimal(Animal animal) {
 
         addAnimalRecursive(animal, true);
     }
@@ -113,7 +113,7 @@ public class Zoo implements Subject {
      * for every show the hunger and happiness level increases by one
      * each Observer is being notified about the show
      */
-    public void watchAnimals() {
+    protected void watchAnimals() {
         if (this.happinessLevel < MAX_HAPPINESS)
             this.happinessLevel++;
         if (this.hungerLevel < MAX_HAPPINESS)
@@ -126,9 +126,9 @@ public class Zoo implements Subject {
 
     /**
      * for every feeding the animals' hunger level decries by one
-     * each Observer is being notified about the feeeding
+     * each Observer is being notified about the feeding
      */
-    public void feedAnimals() {
+    protected void feedAnimals() {
         if (this.hungerLevel > MIN_HUNGER)
             this.hungerLevel--;
         for (Animal a : animals)
@@ -138,7 +138,7 @@ public class Zoo implements Subject {
 
     /**
      *  unsubscribe an observer from the zoo's notification system
-     * @param observer
+     * @param observer instance of an Observer
      */
     public void removeObserver(Observer observer) {
         this.zooObservers.remove((ZooObserver) observer);
@@ -146,7 +146,7 @@ public class Zoo implements Subject {
 
     /**
      *  subscribe a new observer to the zoo's notification system
-     * @param observer
+     * @param observer instance of an Observer
      */
     public void addObserver(Observer observer) {
         this.zooObservers.add((ZooObserver) observer);

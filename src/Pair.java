@@ -8,7 +8,7 @@ public class Pair {
      *  creates a pair by the animal's name with empty instances list
      * @param name animal's name
      */
-    public Pair(String name) {
+    protected Pair(String name) {
         this.animalName=name;
         animals=new ArrayList<>();
     }
@@ -19,7 +19,7 @@ public class Pair {
      * @param name animal's name
      * @param list all the instances in the zoo from the same breed
      */
-    public Pair(String name, ArrayList<Animal> list){
+    protected Pair(String name, ArrayList<Animal> list){
         this.animalName = name;
         animals = new ArrayList<>(list);
     }
@@ -27,14 +27,14 @@ public class Pair {
     /**
      * @return the name of the breed's list
      */
-    public String getAnimalName() {
+    protected String getAnimalName() {
         return animalName;
     }
 
     /**
      * @return list of all the instances from the animal's breed in the zoo
      */
-    public ArrayList<Animal> getAnimals() {
+    protected ArrayList<Animal> getAnimals() {
         return animals;
     }
 
@@ -42,7 +42,7 @@ public class Pair {
      * adding a new instance to the zoo
      * @param animal new instance
      */
-    public void addAnimal(Animal animal) {
+    protected void addAnimal(Animal animal) {
         this.animals.add(animal);
     }
 }
