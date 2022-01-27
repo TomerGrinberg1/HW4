@@ -2,16 +2,17 @@ public class ZooObserver implements Observer {
     private String name;
 
     /**
-     *
-     * @param name
+     * class constructor
+     * @param name observer's name(
      */
     public ZooObserver(String name){
         this.name=name;
 
     }
     /**
+     * notifies each observer on the latest event occurred in the zoo
+     * @param desc event's info
      *
-     * @param desc
      */
     @Override
     public void update(String desc) {

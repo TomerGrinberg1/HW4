@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
 public class Pair {
-    private String animalName;
+    private final String animalName;
     private ArrayList<Animal> animals;
     /**
-     *
-     * @param name
+     *  class constructor.
+     *  creates a pair by the animal's name with empty instances list
+     * @param name animal's name
      */
     public Pair(String name) {
         this.animalName=name;
@@ -13,9 +14,10 @@ public class Pair {
     }
 
     /**
-     *
-     * @param name
-     * @param list
+     *  class constructor.
+     *  creates a new pair by the animals name and all of its instances
+     * @param name animal's name
+     * @param list all the instances in the zoo from the same breed
      */
     public Pair(String name, ArrayList<Animal> list){
         this.animalName = name;
@@ -23,24 +25,22 @@ public class Pair {
     }
 
     /**
-     *
-     * @return
+     * @return the name of the breed's list
      */
     public String getAnimalName() {
         return animalName;
     }
 
     /**
-     *
-     * @return
+     * @return list of all the instances from the animal's breed in the zoo
      */
     public ArrayList<Animal> getAnimals() {
         return animals;
     }
 
     /**
-     *
-     * @param animal
+     * adding a new instance to the zoo
+     * @param animal new instance
      */
     public void addAnimal(Animal animal) {
         this.animals.add(animal);

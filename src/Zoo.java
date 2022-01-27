@@ -13,7 +13,8 @@ public class Zoo implements Subject {
     ArrayList<ZooObserver> zooObservers;
 
     /**
-     *
+     *class constructor
+     * set as private as part of the Singelton design-pattern
      */
     private Zoo() {
         animals = new ArrayList<>();
@@ -21,8 +22,8 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
-     * @return
+     * creates a zoo instance if one is not already exist
+     * @return zoo instance, null is the Singelton is already has been created
      */
     public static Zoo getInstance() {
         if (instance == null) {
@@ -35,44 +36,53 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
-     * @param list
+     * sorts the animals by an alphabetic order
+     * @param list pairs of animal' name and a list of all its' instances
      */
     public void sortPair(ArrayList<Pair> list) {
         for (int i = 0; i < list.size(); i++)
             for (int j = i + 1; j < list.size(); j++)
-                if (list.get(i).getAnimalName().compareTo(list.get(j).getAnimalName()) > 0) {
+                if (list.get(i).getAnimalName().compareTo(
+                        list.get(j).getAnimalName()) > 0) {
                     Pair temp = list.get(i);
-                    list.set(i, new Pair(list.get(j).getAnimalName(), list.get(j).getAnimals()));
-                    list.set(j, new Pair(temp.getAnimalName(), temp.getAnimals()));
+                    list.set(i, new Pair(list.get(j).getAnimalName(),
+                            list.get(j).getAnimals()));
+                    list.set(j, new Pair(temp.getAnimalName(),
+                            temp.getAnimals()));
                 }
     }
 
     /**
-     *
+     * print a quick preview on the animals' overall quantity, hunger and happiness level
      */
     public void showAnimalsInfo() {
-        System.out.println("The zoo contains total of " + this.animals.size() + " animals:");
+        System.out.println("The zoo contains total of " +
+                this.animals.size() + " animals:");
         sortPair(pairs);
 
         for (Pair p : pairs)
-            System.out.println("- " + p.getAnimalName() + ": " + p.getAnimals().size());
+            System.out.println("- " + p.getAnimalName() +
+                    ": " + p.getAnimals().size());
 
         System.out.println("Happiness level: " + this.happinessLevel);
         if (this.happinessLevel < HAPPINESS_BAR)
-            System.out.println("The animals are not happy, you should watch them...");
+            System.out.println(
+                    "The animals are not happy, you should watch them...");
         else
-            System.out.println("The animals are very happy, keep working hard...");
+            System.out.println(
+                    "The animals are very happy, keep working hard...");
 
         System.out.println("Hunger level: " + this.hungerLevel);
         if (this.hungerLevel > HAPPINESS_BAR)
-            System.out.println("The animals are hungry, you should feed them...");
+            System.out.println(
+                    "The animals are hungry, you should feed them...");
     }
 
     /**
-     *
-     * @param animal
-     * @param first
+     * adds a new animal instance to the animal-pairs list,
+     * is the breed does not appear in the list yet, it creates new pair
+     * @param animal Animal instance
+     * @param first decides if new pair is need to be created
      */
     public void addAnimalRecursive(Animal animal, Boolean first) {
 
@@ -81,7 +91,8 @@ public class Zoo implements Subject {
         for (Pair p : pairs)
             if (p.getAnimalName().equals(animal.getClass().getSimpleName())) {
                 p.addAnimal(animal);
-                notifyObservers(animal.getClass().getSimpleName() + " has been added to the zoo!");
+                notifyObservers(animal.getClass().getSimpleName() +
+                        " has been added to the zoo!");
                 return;
             }
         pairs.add(new Pair(animal.getClass().getSimpleName()));
@@ -89,7 +100,7 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
+     *  adds the Animal instance to the pairs list, coat method
      * @param animal
      */
     public void addAnimal(Animal animal) {
@@ -98,7 +109,9 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
+     * activates as a show organizer
+     * for every show the hunger and happiness level increases by one
+     * each Observer is being notified about the show
      */
     public void watchAnimals() {
         if (this.happinessLevel < MAX_HAPPINESS)
@@ -112,7 +125,8 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
+     * for every feeding the animals' hunger level decries by one
+     * each Observer is being notified about the feeeding
      */
     public void feedAnimals() {
         if (this.hungerLevel > MIN_HUNGER)
@@ -123,7 +137,7 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
+     *  unsubscribe an observer from the zoo's notification system
      * @param observer
      */
     public void removeObserver(Observer observer) {
@@ -131,7 +145,7 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
+     *  subscribe a new observer to the zoo's notification system
      * @param observer
      */
     public void addObserver(Observer observer) {
@@ -139,8 +153,8 @@ public class Zoo implements Subject {
     }
 
     /**
-     *
-     * @param desc
+     *  notifies each subscriber on the latest event in the zoo
+     * @param desc the message each observer is going to get
      */
     @Override
     public void notifyObservers(String desc) {

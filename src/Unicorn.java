@@ -1,7 +1,7 @@
 public class Unicorn implements Animal {
 
     /**
-     *
+     * notifies observers that the animal is putting a show
      */
     @Override
     public void performAction() {
@@ -9,7 +9,7 @@ public class Unicorn implements Animal {
     }
 
     /**
-     *
+     * notifies observers that the animal is being fed
      */
     @Override
     public void eat() {

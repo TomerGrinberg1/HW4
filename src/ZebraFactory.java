@@ -2,8 +2,9 @@
 public class ZebraFactory extends AnimalFactory {
     /**
      *
-     * @return
+     * @return instance of a Zebra
      */
+    @Override
     public Animal createAnimal() {
         return new Zebra();
     }

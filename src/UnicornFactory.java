@@ -2,7 +2,7 @@
 public class UnicornFactory extends AnimalFactory{
     /**
      *
-     * @return
+     * @return instance of a Unicorn
      */
     @Override
     public Animal createAnimal() {

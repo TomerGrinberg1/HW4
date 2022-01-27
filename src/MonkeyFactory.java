@@ -1,7 +1,7 @@
 public class MonkeyFactory extends AnimalFactory{
     /**
      *
-     * @return
+     * @return instance of a Monkey
      */
     @Override
     public Animal createAnimal() {

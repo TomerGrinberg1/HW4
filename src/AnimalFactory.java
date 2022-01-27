@@ -1,7 +1,7 @@
 public  abstract  class AnimalFactory{
     /**
      *
-     * @return
+     * @return instance of an Animal
      */
     public abstract Animal createAnimal();
 }
